@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ysu.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.ysu.entity.User">
+        <id column="id" property="id"/>
+        <result column="u_id" property="uId" jdbcType="VARCHAR" />
+        <result column="u_name" property="uName" jdbcType="VARCHAR" />
+        <result column="u_username" property="uUsername" jdbcType="VARCHAR" />
+        <result column="u_sex" property="uSex" jdbcType="BIT" />
+        <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+        <result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+        <result column="u_email" property="uEmail" jdbcType="VARCHAR" />
+        <result column="u_grade" property="uGrade" jdbcType="VARCHAR" />
+        <result column="u_trait" property="uTrait" jdbcType="VARCHAR" />
+        <result column="u_status" property="uStatus" jdbcType="INTEGER" />
+        <association property="group" javaType="com.ysu.entity.UserGroup">
+            <id property="gId" column="id"/>
+            <result property="gName" column="g_name"/>
+        </association>
+        <association property="research" javaType="com.ysu.entity.UserResearch">
+            <id property="rId" column="id"/>
+            <result property="rName" column="r_name"/>
+        </association>
+    </resultMap>
 
+    <sql id="where_sql">
+        <where>
+            and u.u_status = #{status}
+            <if test="group_select != 3">
+                and u.group_id = #{group_select}
+            </if>
+            <if test="research_select != 4">
+                and u.research_id = #{research_select}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                and (u.u_name like concat('%',#{keyword},'%')
+                or u.u_username like concat('%',#{keyword},'%')
+                or u.u_trait like concat('%',#{keyword},'%'))
+            </if>
+        </where>
+    </sql>
+
+    <select id="userList" resultMap="UserResultMap">
+        SELECT
+            u.*,
+            g.g_name,
+            r.r_name
+        FROM
+            `user` AS u
+                INNER JOIN
+            user_group AS g
+        ON
+            u.group_id = g.g_id
+            INNER JOIN
+        user_research AS r
+        ON
+            u.research_id = r.r_id
+        <include refid="where_sql"/>
+    </select>
 </mapper>

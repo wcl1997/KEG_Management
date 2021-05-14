@@ -35,7 +35,7 @@ public class AccountController {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
         Assert.notNull(user, "用户不存在");
 
-        if(!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))){
+        if(!user.getUPassword().equals(SecureUtil.md5(loginDto.getPassword()))){
             return Result.fail("密码不正确");
         }
         String jwt = jwtUtils.generateToken(user.getId());
@@ -45,9 +45,9 @@ public class AccountController {
 
         return Result.success(MapUtil.builder()
                 .put("id", user.getId())
-                .put("username", user.getUsername())
-                .put("avatar", user.getAvatar())
-                .put("email", user.getEmail())
+                .put("username", user.getUUsername())
+                .put("name", user.getUName())
+                .put("email", user.getUEmail())
                 .map()
         );
     }

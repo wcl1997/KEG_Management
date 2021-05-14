@@ -20,30 +20,38 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+//@Accessors(chain = true)
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    @NotBlank(message = "昵称不能为空")
-    private String username;
+    private Long uId;
 
-    private String avatar;
+    private String uName;
+
+    @NotBlank(message = "昵称不能为空")
+    private String uUsername;
+
+    private Boolean uSex;
+
+    private String uPassword;
+
+    private String uPhone;
 
     @NotBlank(message = "邮箱不能为空")
     @Email(message = "邮箱格式不正确")
-    private String email;
+    private String uEmail;
 
-    private String password;
+    private String uGrade;
 
-    private Integer status;
+    private String uTrait;
 
-    private LocalDateTime created;
+    private Integer uStatus;
 
-    @TableField("lastLogin")
-    private LocalDateTime lastLogin;
+    private UserGroup group;
 
+    private UserResearch research;
 
 }
