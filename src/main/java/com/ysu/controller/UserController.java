@@ -33,7 +33,7 @@ public class UserController {
 //    @RequiresAuthentication
     @GetMapping("/index")
     public Result index() {
-        User user = userService.getById(1L);
+        User user = userService.getById(2L);
         return Result.success(user);
     }
 
@@ -42,6 +42,13 @@ public class UserController {
         PageListRes pageList = userService.userList(vo);
         return Result.success(pageList);
     }
+
+    //启用
+//    @GetMapping("/ok")
+//    public Result ok() {
+//        userService.ok();
+//        return Result.success("success");
+//    }
 
     @PostMapping("/save")
     public Result save(@Validated @RequestBody User user) {
