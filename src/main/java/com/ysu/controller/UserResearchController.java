@@ -26,9 +26,17 @@ public class UserResearchController {
     @Autowired
     private UserResearchService userResearchService;
 
+    //获取全部的userResearch
     @GetMapping("/userResearchList")
     public Result index() {
         List<UserResearch> list = userResearchService.userResearchList();
+        return Result.success(list);
+    }
+
+    //获取不包含‘全部’的userResearch
+    @GetMapping("/getUserResearch")
+    public Result getUserResearch() {
+        List<UserResearch> list = userResearchService.getUserResearch();
         return Result.success(list);
     }
 

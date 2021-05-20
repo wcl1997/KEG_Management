@@ -26,4 +26,9 @@ public class UserResearchServiceImpl extends ServiceImpl<UserResearchMapper, Use
     public List<UserResearch> userResearchList() {
         return userResearchMapper.userResearchList();
     }
+
+    @Override
+    public List<UserResearch> getUserResearch() {
+        return userResearchMapper.getUserResearch();
+    }
 }

@@ -5,4 +5,7 @@
     <select id="userResearchList" resultType="com.ysu.entity.UserResearch">
         SELECT r_id,r_name  FROM user_research
     </select>
+    <select id="getUserResearch" resultType="com.ysu.entity.UserResearch">
+        SELECT r_id,r_name  FROM user_research WHERE r_id != 4
+    </select>
 </mapper>

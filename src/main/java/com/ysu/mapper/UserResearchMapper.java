@@ -16,4 +16,6 @@ import java.util.List;
 public interface UserResearchMapper extends BaseMapper<UserResearch> {
 
     List<UserResearch> userResearchList();
+
+    List<UserResearch> getUserResearch();
 }

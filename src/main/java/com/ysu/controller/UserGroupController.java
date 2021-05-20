@@ -29,10 +29,18 @@ public class UserGroupController {
     @Autowired
     private UserGroupService userGroupService;
 
+    //获取全部的userGroup
 //    @RequiresAuthentication
     @GetMapping("/userGroupList")
     public Result index() {
         List<UserGroup> list = userGroupService.list();
+        return Result.success(list);
+    }
+
+    //获取不带‘全部’的userGroup
+    @GetMapping("/getUserGroup")
+    public Result getUserGroup() {
+        List<UserGroup> list = userGroupService.getUserGroup();
         return Result.success(list);
     }
 }

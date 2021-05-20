@@ -5,6 +5,8 @@ import com.ysu.entity.page.QueryVo;
 import com.ysu.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -16,4 +18,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserService extends IService<User> {
 
     PageListRes userList(QueryVo vo);
+
+    void updateStatus(int status, List<Long> ids);
+
+    void deleteUsers(List<Long> ids);
+
+    void insertUser(User user, int gId, int rId);
 }

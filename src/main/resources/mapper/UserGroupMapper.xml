@@ -5,4 +5,7 @@
     <select id="list" resultType="com.ysu.entity.UserGroup">
         SELECT g_id,g_name  FROM user_group
     </select>
+    <select id="getUserGroup" resultType="com.ysu.entity.UserGroup">
+        SELECT g_id,g_name  FROM user_group WHERE g_id != 3
+    </select>
 </mapper>

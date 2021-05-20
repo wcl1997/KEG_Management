@@ -39,6 +39,25 @@
             </if>
         </where>
     </sql>
+    <insert id="insertUser">
+        insert into user (u_id, u_name, u_sex, u_username, u_password, u_phone, u_email, u_grade, u_trait, u_status, group_id, research_id)
+        VALUES
+               (#{user.uId}, #{user.uName}, #{user.uSex}, #{user.uUsername}, #{user.uPassword}, #{user.uPhone}, #{user.uEmail}, #{user.uGrade}, #{user.uTrait}, #{user.uStatus}, #{gId}, #{rId})
+    </insert>
+
+    <update id="updateStatus">
+        UPDATE `user` SET u_status = #{status} WHERE id IN
+         <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+         </foreach>
+    </update>
+
+    <delete id="deleteUsers">
+        DELETE FROM `user` WHERE id IN
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
 
     <select id="userList" resultMap="UserResultMap">
         SELECT

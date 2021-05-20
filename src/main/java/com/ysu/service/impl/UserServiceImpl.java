@@ -41,4 +41,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         pageListRes.setRows(userList);
         return pageListRes;
     }
+
+    @Override
+    public void updateStatus(int status, List<Long> ids) {
+        userMapper.updateStatus(status, ids);
+    }
+
+    @Override
+    public void deleteUsers(List<Long> ids) {
+        userMapper.deleteUsers(ids);
+    }
+
+    @Override
+    public void insertUser(User user, int gId, int rId) {
+        userMapper.insertUser(user, gId, rId);
+    }
 }

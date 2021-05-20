@@ -16,4 +16,6 @@ import java.util.List;
 public interface UserGroupMapper extends BaseMapper<UserGroup> {
 
     List<UserGroup> list();
+
+    List<UserGroup> getUserGroup();
 }

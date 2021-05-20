@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface UserGroupService extends IService<UserGroup> {
     List<UserGroup> list();
+
+    List<UserGroup> getUserGroup();
 }

@@ -26,4 +26,9 @@ public class UserGroupServiceImpl extends ServiceImpl<UserGroupMapper, UserGroup
     public List<UserGroup> list() {
         return userGroupMapper.list();
     }
+
+    @Override
+    public List<UserGroup> getUserGroup() {
+        return userGroupMapper.getUserGroup();
+    }
 }

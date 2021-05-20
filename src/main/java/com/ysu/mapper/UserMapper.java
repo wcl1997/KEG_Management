@@ -19,4 +19,10 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
 
     List<User> userList(QueryVo vo);
+
+    void updateStatus(int status, List<Long> ids);
+
+    void deleteUsers(List<Long> ids);
+
+    void insertUser(User user, int gId, int rId);
 }
